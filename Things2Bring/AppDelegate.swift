@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Parse
+import Bolts
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +17,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        Event.registerSubclass()
+        User.registerSubclass()
+        Guest.registerSubclass()
         // Override point for customization after application launch.
+        
+        Parse.enableLocalDatastore()
+        
+        // Initialize Parse.
+        Parse.setApplicationId("K7WZ7dbviyLC0ysdtBJ1pXOyHCnEKLjLURXY2cCF",
+            clientKey: "u1P5rEmhYCuEREss6ekjWh6Zn2m0ZAHoBNHBaRfJ")
+        
+        //Login
+        
+        PFUser.logInWithUsername("Test", password: "test")
+        
+        if let user = PFUser.currentUser() {
+            println("Log in successful")
+        } else {
+            println("No logged in user :(")
+        }
+
+        
+        // [Optional] Track statistics around application opens.
+        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
+        return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        
+        
         return true
     }
 
@@ -40,6 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    
 
 
 }
