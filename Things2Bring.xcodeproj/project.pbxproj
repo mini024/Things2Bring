@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2222A97C1B542F35007219AE /* User Male Circle Filled-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 2222A97B1B542F35007219AE /* User Male Circle Filled-32.png */; };
+		2208B06A1B5DBB6E00D55605 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2208B0681B5DBB6E00D55605 /* Main.storyboard */; };
+		221031541B5F075A0094BDED /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CD5A681B56E1E700F57439 /* Parse.framework */; };
+		2216CAE51B56FF26001CB6E7 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2216CAE41B56FF26001CB6E7 /* Guest.swift */; };
+		2216CAE71B56FF64001CB6E7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2216CAE61B56FF64001CB6E7 /* User.swift */; };
 		2222A98D1B544AB5007219AE /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222A98C1B544AB5007219AE /* EventTableViewCell.swift */; };
 		2222A9921B544D48007219AE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2222A9911B544D48007219AE /* AudioToolbox.framework */; };
 		2222A9971B544D75007219AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2222A9931B544D75007219AE /* CoreGraphics.framework */; };
@@ -20,16 +23,30 @@
 		2222A9A21B544DCE007219AE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2222A9A11B544DCE007219AE /* SystemConfiguration.framework */; };
 		2222A9A41B544DD8007219AE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2222A9A31B544DD8007219AE /* libz.dylib */; };
 		2222A9B01B546AB3007219AE /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2222A9AF1B546AB3007219AE /* Event.swift */; };
+		2241E1231B60353700856661 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241E1221B60353700856661 /* InviteFriendsViewController.swift */; };
+		2241E1251B6056E500856661 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241E1241B6056E500856661 /* LoginViewController.swift */; };
 		225262AE1B54298C00FB9C4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225262AD1B54298C00FB9C4D /* AppDelegate.swift */; };
 		225262B01B54298C00FB9C4D /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225262AF1B54298C00FB9C4D /* EventsViewController.swift */; };
-		225262B31B54298C00FB9C4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 225262B11B54298C00FB9C4D /* Main.storyboard */; };
 		225262B51B54298C00FB9C4D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 225262B41B54298C00FB9C4D /* Images.xcassets */; };
 		225262B81B54298C00FB9C4D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225262B61B54298C00FB9C4D /* LaunchScreen.xib */; };
 		225262C41B54298D00FB9C4D /* Things2BringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225262C31B54298D00FB9C4D /* Things2BringTests.swift */; };
+		22B8EF631B5F290B00C0E153 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B8EF621B5F290B00C0E153 /* ParseHelper.swift */; };
+		22C35C831B5811BA00F91ECC /* CreateEditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C35C821B5811BA00F91ECC /* CreateEditEventViewController.swift */; };
+		22C35C8C1B587F5600F91ECC /* PopDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C35C891B587F5600F91ECC /* PopDatePicker.swift */; };
+		22C35C8D1B587F5600F91ECC /* PopDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C35C8A1B587F5600F91ECC /* PopDateViewController.swift */; };
+		22C35C8E1B587F5600F91ECC /* PopDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22C35C8B1B587F5600F91ECC /* PopDateViewController.xib */; };
+		22C35C901B58801000F91ECC /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C35C8F1B58801000F91ECC /* DateUtils.swift */; };
+		22C35C941B595FB600F91ECC /* IconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C35C931B595FB600F91ECC /* IconCollectionViewCell.swift */; };
+		22C35C961B595FC700F91ECC /* UploadIconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C35C951B595FC700F91ECC /* UploadIconCollectionViewCell.swift */; };
+		22C35C981B5968F300F91ECC /* icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C35C971B5968F300F91ECC /* icon.swift */; };
+		22C35C9A1B596F9700F91ECC /* IconsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C35C991B596F9700F91ECC /* IconsCollectionViewController.swift */; };
+		22C35C9C1B598B7C00F91ECC /* ItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C35C9B1B598B7C00F91ECC /* ItemsTableViewController.swift */; };
+		22C35C9E1B598B9C00F91ECC /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C35C9D1B598B9C00F91ECC /* ItemTableViewCell.swift */; };
+		22C35CA01B598D4E00F91ECC /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C35C9F1B598D4E00F91ECC /* Item.swift */; };
+		22C35CA21B59994A00F91ECC /* AddItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C35CA11B59994A00F91ECC /* AddItemsTableViewCell.swift */; };
 		22CBD2D41B5585E90051C8D0 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CBD2D31B5585E90051C8D0 /* HeaderTableViewCell.swift */; };
 		22CBD2D81B55B7F80051C8D0 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CBD2D71B55B7F80051C8D0 /* EventViewController.swift */; };
 		22CD5A6D1B56E1E700F57439 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CD5A671B56E1E700F57439 /* Bolts.framework */; };
-		22CD5A6E1B56E1E700F57439 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CD5A681B56E1E700F57439 /* Parse.framework */; };
 		22CD5A6F1B56E1E700F57439 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CD5A691B56E1E700F57439 /* ParseCrashReporting.framework */; };
 		22CD5A701B56E1E700F57439 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CD5A6A1B56E1E700F57439 /* ParseFacebookUtils.framework */; };
 		22CD5A711B56E1E700F57439 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CD5A6B1B56E1E700F57439 /* ParseFacebookUtilsV4.framework */; };
@@ -47,7 +64,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2222A97B1B542F35007219AE /* User Male Circle Filled-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "User Male Circle Filled-32.png"; sourceTree = "<group>"; };
+		2208B0691B5DBB6E00D55605 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Things2Bring/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2216CAE41B56FF26001CB6E7 /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
+		2216CAE61B56FF64001CB6E7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2222A98C1B544AB5007219AE /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		2222A9911B544D48007219AE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2222A9931B544D75007219AE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -59,17 +78,32 @@
 		2222A99F1B544DC3007219AE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2222A9A11B544DCE007219AE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2222A9A31B544DD8007219AE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		2222A9AF1B546AB3007219AE /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		2222A9AF1B546AB3007219AE /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = ../Event.swift; sourceTree = "<group>"; };
+		2241E1221B60353700856661 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
+		2241E1241B6056E500856661 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		225262A81B54298C00FB9C4D /* Things2Bring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Things2Bring.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		225262AC1B54298C00FB9C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		225262AD1B54298C00FB9C4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		225262AF1B54298C00FB9C4D /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventsViewController.swift; path = ../EventsViewController.swift; sourceTree = "<group>"; };
-		225262B21B54298C00FB9C4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		225262B41B54298C00FB9C4D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		225262B71B54298C00FB9C4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		225262BD1B54298C00FB9C4D /* Things2BringTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Things2BringTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		225262C21B54298D00FB9C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		225262C31B54298D00FB9C4D /* Things2BringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Things2BringTests.swift; sourceTree = "<group>"; };
+		22B8EF621B5F290B00C0E153 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
+		22C35C821B5811BA00F91ECC /* CreateEditEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEditEventViewController.swift; sourceTree = "<group>"; };
+		22C35C891B587F5600F91ECC /* PopDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDatePicker.swift; sourceTree = "<group>"; };
+		22C35C8A1B587F5600F91ECC /* PopDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDateViewController.swift; sourceTree = "<group>"; };
+		22C35C8B1B587F5600F91ECC /* PopDateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopDateViewController.xib; sourceTree = "<group>"; };
+		22C35C8F1B58801000F91ECC /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		22C35C931B595FB600F91ECC /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
+		22C35C951B595FC700F91ECC /* UploadIconCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadIconCollectionViewCell.swift; sourceTree = "<group>"; };
+		22C35C971B5968F300F91ECC /* icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = icon.swift; sourceTree = "<group>"; };
+		22C35C991B596F9700F91ECC /* IconsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconsCollectionViewController.swift; sourceTree = "<group>"; };
+		22C35C9B1B598B7C00F91ECC /* ItemsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsTableViewController.swift; sourceTree = "<group>"; };
+		22C35C9D1B598B9C00F91ECC /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		22C35C9F1B598D4E00F91ECC /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		22C35CA11B59994A00F91ECC /* AddItemsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemsTableViewCell.swift; sourceTree = "<group>"; };
 		22CBD2D31B5585E90051C8D0 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		22CBD2D71B55B7F80051C8D0 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		22CD5A671B56E1E700F57439 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -95,9 +129,9 @@
 				2222A9971B544D75007219AE /* CoreGraphics.framework in Frameworks */,
 				2222A9981B544D75007219AE /* CoreLocation.framework in Frameworks */,
 				2222A9991B544D75007219AE /* MobileCoreServices.framework in Frameworks */,
+				221031541B5F075A0094BDED /* Parse.framework in Frameworks */,
 				22CD5A6D1B56E1E700F57439 /* Bolts.framework in Frameworks */,
 				2222A99A1B544D75007219AE /* QuartzCore.framework in Frameworks */,
-				22CD5A6E1B56E1E700F57439 /* Parse.framework in Frameworks */,
 				2222A9921B544D48007219AE /* AudioToolbox.framework in Frameworks */,
 				22CD5A6F1B56E1E700F57439 /* ParseCrashReporting.framework in Frameworks */,
 				22CD5A711B56E1E700F57439 /* ParseFacebookUtilsV4.framework in Frameworks */,
@@ -114,11 +148,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2216CAE31B56FF10001CB6E7 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2222A9AF1B546AB3007219AE /* Event.swift */,
+				2216CAE41B56FF26001CB6E7 /* Guest.swift */,
+				2216CAE61B56FF64001CB6E7 /* User.swift */,
+				22C35C971B5968F300F91ECC /* icon.swift */,
+				22C35C9F1B598D4E00F91ECC /* Item.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		2222A98B1B544A8D007219AE /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				2222A98C1B544AB5007219AE /* EventTableViewCell.swift */,
 				22CBD2D31B5585E90051C8D0 /* HeaderTableViewCell.swift */,
+				22C35C931B595FB600F91ECC /* IconCollectionViewCell.swift */,
+				22C35C951B595FC700F91ECC /* UploadIconCollectionViewCell.swift */,
+				22C35C9D1B598B9C00F91ECC /* ItemTableViewCell.swift */,
+				22C35CA11B59994A00F91ECC /* AddItemsTableViewCell.swift */,
 			);
 			name = Cells;
 			path = ../Things2Bring.xcodeproj/Cells;
@@ -163,17 +213,18 @@
 		225262AA1B54298C00FB9C4D /* Things2Bring */ = {
 			isa = PBXGroup;
 			children = (
+				22C35C881B587F5600F91ECC /* PopDatePicker */,
+				2216CAE31B56FF10001CB6E7 /* Classes */,
 				2222A98B1B544A8D007219AE /* Cells */,
 				225262E51B542A1400FB9C4D /* ViewControllers */,
+				22B8EF621B5F290B00C0E153 /* ParseHelper.swift */,
 				225262AD1B54298C00FB9C4D /* AppDelegate.swift */,
-				225262B11B54298C00FB9C4D /* Main.storyboard */,
+				2208B0681B5DBB6E00D55605 /* Main.storyboard */,
 				225262B41B54298C00FB9C4D /* Images.xcassets */,
-				2222A97B1B542F35007219AE /* User Male Circle Filled-32.png */,
 				225262B61B54298C00FB9C4D /* LaunchScreen.xib */,
 				22CD5A661B56E1E700F57439 /* Parse Libary */,
 				2222A9A51B544DEB007219AE /* Frameworks */,
 				225262AB1B54298C00FB9C4D /* Supporting Files */,
-				2222A9AF1B546AB3007219AE /* Event.swift */,
 			);
 			path = Things2Bring;
 			sourceTree = "<group>";
@@ -208,8 +259,24 @@
 			children = (
 				225262AF1B54298C00FB9C4D /* EventsViewController.swift */,
 				22CBD2D71B55B7F80051C8D0 /* EventViewController.swift */,
+				22C35C821B5811BA00F91ECC /* CreateEditEventViewController.swift */,
+				22C35C991B596F9700F91ECC /* IconsCollectionViewController.swift */,
+				22C35C9B1B598B7C00F91ECC /* ItemsTableViewController.swift */,
+				2241E1221B60353700856661 /* InviteFriendsViewController.swift */,
+				2241E1241B6056E500856661 /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		22C35C881B587F5600F91ECC /* PopDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				22C35C8F1B58801000F91ECC /* DateUtils.swift */,
+				22C35C891B587F5600F91ECC /* PopDatePicker.swift */,
+				22C35C8A1B587F5600F91ECC /* PopDateViewController.swift */,
+				22C35C8B1B587F5600F91ECC /* PopDateViewController.xib */,
+			);
+			path = PopDatePicker;
 			sourceTree = "<group>";
 		};
 		22CD5A661B56E1E700F57439 /* Parse Libary */ = {
@@ -306,10 +373,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				225262B31B54298C00FB9C4D /* Main.storyboard in Resources */,
+				2208B06A1B5DBB6E00D55605 /* Main.storyboard in Resources */,
 				225262B81B54298C00FB9C4D /* LaunchScreen.xib in Resources */,
+				22C35C8E1B587F5600F91ECC /* PopDateViewController.xib in Resources */,
 				225262B51B54298C00FB9C4D /* Images.xcassets in Resources */,
-				2222A97C1B542F35007219AE /* User Male Circle Filled-32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,10 +395,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				2222A98D1B544AB5007219AE /* EventTableViewCell.swift in Sources */,
+				22C35C9C1B598B7C00F91ECC /* ItemsTableViewController.swift in Sources */,
+				22B8EF631B5F290B00C0E153 /* ParseHelper.swift in Sources */,
+				2241E1251B6056E500856661 /* LoginViewController.swift in Sources */,
+				22C35C901B58801000F91ECC /* DateUtils.swift in Sources */,
+				22C35C831B5811BA00F91ECC /* CreateEditEventViewController.swift in Sources */,
+				22C35C961B595FC700F91ECC /* UploadIconCollectionViewCell.swift in Sources */,
 				22CBD2D41B5585E90051C8D0 /* HeaderTableViewCell.swift in Sources */,
+				22C35C8D1B587F5600F91ECC /* PopDateViewController.swift in Sources */,
+				22C35C941B595FB600F91ECC /* IconCollectionViewCell.swift in Sources */,
 				225262B01B54298C00FB9C4D /* EventsViewController.swift in Sources */,
 				225262AE1B54298C00FB9C4D /* AppDelegate.swift in Sources */,
+				22C35C9E1B598B9C00F91ECC /* ItemTableViewCell.swift in Sources */,
+				22C35C9A1B596F9700F91ECC /* IconsCollectionViewController.swift in Sources */,
+				2241E1231B60353700856661 /* InviteFriendsViewController.swift in Sources */,
+				22C35CA21B59994A00F91ECC /* AddItemsTableViewCell.swift in Sources */,
+				22C35C8C1B587F5600F91ECC /* PopDatePicker.swift in Sources */,
+				2216CAE71B56FF64001CB6E7 /* User.swift in Sources */,
+				22C35CA01B598D4E00F91ECC /* Item.swift in Sources */,
 				2222A9B01B546AB3007219AE /* Event.swift in Sources */,
+				2216CAE51B56FF26001CB6E7 /* Guest.swift in Sources */,
+				22C35C981B5968F300F91ECC /* icon.swift in Sources */,
 				22CBD2D81B55B7F80051C8D0 /* EventViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,12 +439,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		225262B11B54298C00FB9C4D /* Main.storyboard */ = {
+		2208B0681B5DBB6E00D55605 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				225262B21B54298C00FB9C4D /* Base */,
+				2208B0691B5DBB6E00D55605 /* Base */,
 			);
 			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		225262B61B54298C00FB9C4D /* LaunchScreen.xib */ = {
@@ -474,6 +559,28 @@
 					"$(PROJECT_DIR)/Things2Bring/Parse",
 					Libary,
 					"$(PROJECT_DIR)/Things2Bring/Parse",
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
 				);
 				INFOPLIST_FILE = Things2Bring/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -501,6 +608,28 @@
 					"$(PROJECT_DIR)/Things2Bring/Parse",
 					Libary,
 					"$(PROJECT_DIR)/Things2Bring/Parse",
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
 				);
 				INFOPLIST_FILE = Things2Bring/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

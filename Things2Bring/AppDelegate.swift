@@ -10,28 +10,39 @@ import UIKit
 import Parse
 import Bolts
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+@UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        Event.registerSubclass()
-        User.registerSubclass()
-        Guest.registerSubclass()
-        // Override point for customization after application launch.
-        
+        //MARK: Parse
+       
         Parse.enableLocalDatastore()
         
         // Initialize Parse.
         Parse.setApplicationId("K7WZ7dbviyLC0ysdtBJ1pXOyHCnEKLjLURXY2cCF",
             clientKey: "u1P5rEmhYCuEREss6ekjWh6Zn2m0ZAHoBNHBaRfJ")
         
+        //Registering Sublclasses
+        Event.registerSubclass()
+        Things2Bring.Guest.registerSubclass()
+        
         //Login
         
-        PFUser.logInWithUsername("Test", password: "test")
+        var currentUser = PFUser.currentUser()
+        if currentUser != nil {
+            var rootViewController = self.window!.rootViewController
+            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+            var initialViewController = storyboard.instantiateViewControllerWithIdentifier("NavController") as! UINavigationController
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        } else {
+            println("Hello")
+        }
+        
+//        PFUser.logInWithUsername("Test", password: "test")
         
         if let user = PFUser.currentUser() {
             println("Log in successful")
@@ -47,9 +58,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        
-        
-        return true
+        if url.host == "Event"{
+            if let user = PFUser.currentUser() {
+                var rootViewController = self.window!.rootViewController
+                var storyboard = UIStoryboard(name: "Main", bundle: nil)
+                var initialViewController = storyboard.instantiateViewControllerWithIdentifier("NavCont") as! UINavigationController
+                var EventController = initialViewController.topViewController as! EventViewController
+                EventController.openbylink = true
+                EventController.eventId = dropFirst(url.path!)
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+                return true
+            } else {
+                var rootViewController = self.window!.rootViewController as! LoginViewController
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                rootViewController.invitationlink = true
+                rootViewController.eventId = dropFirst(url.path!)
+                return true
+            }
+        }else{
+            return false
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {

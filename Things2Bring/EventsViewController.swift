@@ -10,11 +10,20 @@ import UIKit
 import Parse
 
 class EventsViewController: UIViewController {
+    
     @IBOutlet var segmentControlHostGuest: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
     var events:[Event] = []
     var eventsGuest:[Event] = []
+    var sectionHost:[Event] = []
+    var section1Host:[Event] = []
+    var section2Host:[Event] = []
+    var section3Host:[Event] = []
+    var sectionGuest:[Event] = []
+    var section1Guest:[Event] = []
+    var section2Guest:[Event] = []
+    var section3Guest:[Event] = []
     var guest:[Guest] = []
     var segmentHost = true
     var load = false
@@ -23,11 +32,22 @@ class EventsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationItem.title = "Events"
         //MARK: TableView
         tableView.delegate = self
         tableView.dataSource = self
         
-        println(PFUser.currentUser()?.objectId)
+        //MARK: Refresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    func refresh(refreshControl: UIRefreshControl) {
+        loadEvents()
+        eventsGuest = []
+        // Do your job, when done:
+        refreshControl.endRefreshing()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -35,31 +55,24 @@ class EventsViewController: UIViewController {
     }
     
     func loadEvents(){
-        //MARK: Parse Getting Host Events
-        var queryEventsHost = Event.query()
-        queryEventsHost!.whereKey("User", equalTo: PFUser.currentUser()!)
-        queryEventsHost!.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
+        //MARK: Parse Helper Get Events
+        ParseHelper.loadEvents{(result: [AnyObject]?, error: NSError?) -> Void in
             self.events = result as? [Event] ?? []
             self.tableView.reloadData()
-        }
-        
-        //MARK: Parse Getting Guest Events
-        var queryEventsGuest = Guest.query()
-        queryEventsGuest!.whereKey("userId", equalTo: PFUser.currentUser()!)
-        queryEventsGuest!.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
+            }
+
+        //MARK: Parse Helper Get Guest Events
+       ParseHelper.loadGuestEvents{(result: [AnyObject]?, error: NSError?) -> Void in
             self.guest = result as? [Guest] ?? []
-            println(self.guest)
+            println(self.guest[0].objectForKey("Event"))
                 for index in 0...self.guest.count - 1 {
-                    var query = Event.query()
-                    query!.whereKey("objectId", equalTo: self.guest[index].objectForKey("eventId")!)
-                    query!.findObjectsInBackgroundWithBlock( {(result: [AnyObject]?, error: NSError?) -> Void in
-                        self.eventsGuest += result as? [Event] ?? []
-                    })
+                    var event = self.guest[index].objectForKey("Event") as! Event
+                    self.eventsGuest.append(event)
                 }
         }
     }
 
-    @IBAction func loadNewEvents(sender: AnyObject) {
+    @IBAction func changingsection(sender: AnyObject) {
         if segmentControlHostGuest.selectedSegmentIndex == 0{
             segmentHost = true
             tableView.reloadData()
@@ -76,8 +89,16 @@ class EventsViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "EventDetail"{
-            let EventDetailViewController = segue.destinationViewController as! EventViewController
+            let navController = segue.destinationViewController as! UINavigationController
+            let EventDetailViewController =  navController.topViewController as! EventViewController
             EventDetailViewController.event = selectedEvent
+            if segmentHost == false{
+                EventDetailViewController.EditSaveButton.title = " "
+            } else{
+                EventDetailViewController.host = true
+            }
+        } else if segue.identifier == "CreateEvent"{
+            
         }
     }
 
@@ -95,16 +116,8 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
         let cell =  tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath) as! EventTableViewCell
         let sectionItems = self.getSectionItems(indexPath.section) as [Event]
         let TextItem: Event = sectionItems[indexPath.row] as Event
-        
-        let newevent = Event()
-        newevent.title =  TextItem.objectForKey("Title") as! String
-        newevent.date = TextItem.objectForKey("Date") as? NSDate
-        newevent.eventDescrption = TextItem.objectForKey("Description") as! String
-        newevent.icon = TextItem.objectForKey("Icon") as? PFFile
-        
-        cell.event = newevent
-        println(cell.event)
-        
+
+        cell.event = TextItem
         return cell
     }
     
@@ -140,9 +153,11 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
 
         for var i = 0; i<numberofEvents; i += 1 {
             //MARK: Getting current Date
-            var eventdate = (events[i].objectForKey("Date") as? NSDate)!
+            var eventdate = NSDate()
             if !segmentHost{
                 eventdate = (eventsGuest[i].objectForKey("Date") as? NSDate)!
+            } else {
+                eventdate = (events[i].objectForKey("Date") as? NSDate)!
             }
             
             var date = NSDate()
@@ -180,7 +195,37 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
                    sectionEvents.append(eventsGuest[i])
                 }
             }
+            if sectionEvent == section{
+                if segmentHost{
+                    switch (section) {
+                    case 0:
+                        sectionHost = sectionEvents
+                    case 1:
+                        section1Host = sectionEvents
+                    case 2:
+                        section2Host = sectionEvents
+                    case 3:
+                        section3Host = sectionEvents
+                    default:
+                        section3Host = sectionEvents
+                    }
+                } else{
+                    switch (section) {
+                    case 0:
+                        sectionGuest = sectionEvents
+                    case 1:
+                        section1Guest = sectionEvents
+                    case 2:
+                        section2Guest = sectionEvents
+                    case 3:
+                        section3Guest = sectionEvents
+                    default:
+                        section3Guest = sectionEvents
+                    }
+                }
+            }
         }
+
             return sectionEvents
     }
     
@@ -189,13 +234,13 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
         
         switch (section) {
         case 0:
-            headerCell.headerLabel.text = "Today";
+            headerCell.headerLabel.text = "Today"
         case 1:
-            headerCell.headerLabel.text = "This Week";
+            headerCell.headerLabel.text = "This Week"
         case 2:
-            headerCell.headerLabel.text = "Next Week";
+            headerCell.headerLabel.text = "Next Week"
         default:
-            headerCell.headerLabel.text = "Next Month";
+            headerCell.headerLabel.text = "Next Month"
         }
         
         return headerCell
@@ -203,22 +248,86 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var clicked = "\(indexPath.section)" + " & " + "\(indexPath.row)"
-        let cell =  tableView.dequeueReusableCellWithIdentifier("EventCell", forIndexPath: indexPath) as! EventTableViewCell
-        println(clicked)
-        if (segmentHost){
-            selectedEvent = cell.event!
+        var section = indexPath.section
+        var row = indexPath.row
+
+        var TextItem: Event = events[row] as Event
+
+        if segmentHost{
+            switch (section) {
+                case 0:
+                    TextItem = sectionHost[row] as Event
+                case 1:
+                    TextItem = section1Host[row] as Event
+                case 2:
+                    TextItem = section2Host[row] as Event
+                default:
+                    TextItem = section3Host[row]
+            }
         } else{
-             selectedEvent = eventsGuest[indexPath.row]
+            switch (section) {
+            case 0:
+                TextItem = sectionGuest[row] as Event
+            case 1:
+                TextItem = section1Guest[row] as Event
+            case 2:
+                TextItem = section2Guest[row] as Event
+            default:
+                TextItem = section3Guest[row] as Event
+            }
         }
+
+        selectedEvent = TextItem
+        
+        self.performSegueWithIdentifier("EventDetail", sender: self) 
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == .Delete) {
             //MARK : Delete Event from Parse
             var deleteEvent = Event()
-            deleteEvent.deleteInBackground()
-            loadEvents()
+            
+            var section = indexPath.section
+            var row = indexPath.row
+            
+            var TextItem: Event = events[row] as Event
+            
+            if segmentHost{
+                switch (section) {
+                case 0:
+                    TextItem = sectionHost[row] as Event
+                    sectionHost.removeAtIndex(row)
+                case 1:
+                    TextItem = section1Host[row] as Event
+                    section1Host.removeAtIndex(row)
+                case 2:
+                    TextItem = section2Host[row] as Event
+                    section2Host.removeAtIndex(row)
+                default:
+                    TextItem = section3Host[row]
+                    section3Host.removeAtIndex(row)
+                }
+                events.removeAtIndex(row)
+            } else{
+                switch (section) {
+                case 0:
+                    TextItem = sectionGuest[row] as Event
+                    sectionGuest.removeAtIndex(row)
+                case 1:
+                    TextItem = section1Guest[row] as Event
+                    section1Guest.removeAtIndex(row)
+                case 2:
+                    TextItem = section2Guest[row] as Event
+                    section2Guest.removeAtIndex(row)
+                default:
+                    TextItem = section3Guest[row] as Event
+                    section3Guest.removeAtIndex(row)
+                }
+                eventsGuest.removeAtIndex(row)
+            }
+            
+            //Check For Delete Event && Items of Event   
+            ParseHelper.DeleteEvent(TextItem)
             tableView.reloadData()
         }
     }

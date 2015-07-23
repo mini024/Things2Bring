@@ -8,12 +8,15 @@
 
 import UIKit
 import Parse
+import Bolts
 
 class Event: PFObject, PFSubclassing {
-    var title: String = " "
-    var date: NSDate?
-    var icon: PFFile?
-    var eventDescrption: String = " "
+    @NSManaged var Title: String
+    @NSManaged var Date: NSDate?
+    @NSManaged var Icon: PFFile?
+    @NSManaged var eventDescription: String
+    @NSManaged var Address: String?
+    @NSManaged var User: PFUser?
     
     // 3
     static func parseClassName() -> String {
@@ -26,50 +29,36 @@ class Event: PFObject, PFSubclassing {
         
         
     }
+    
+    override class func initialize() {
+        var onceToken : dispatch_once_t = 0;
+        dispatch_once(&onceToken) {
+            // inform Parse about this subclass
+            self.registerSubclass()
+            
+        }
+    }
+    
+    
+    func print() {
+        println(Title)
+        println(Date)
+        println(Address)
+        println(eventDescription)
+    }
+    
+    func edited(event2: Event) -> Bool{
+        if Title != event2.Title || Address != event2.Address || Date != event2.Date || eventDescription != event2.eventDescription || Icon != event2.Icon{
+            return true
+        } else{
+            return false
+        }
+    }
 
 }
 
-class User: PFObject, PFSubclassing {
-    var userId: String = " "
-    var username: String = " "
-    var profilepicture: PFFile?
-    var Name: String = " "
-    var password: String = " "
-    var GuestEventId: String = " "
-    
-    // 3
-    static func parseClassName() -> String {
-        return "User"
-    }
-    
-    // 4
-    override init () {
-        super.init()
-        
-        
-    }
-    
-}
 
 
-class Guest: PFObject, PFSubclassing {
-    var user: String = " "
-    var event: String = " "
-
-    
-    // 3
-    static func parseClassName() -> String {
-        return "Guest"
-    }
-    
-    // 4
-    override init () {
-        super.init()
-        
-        
-    }
-    
-}
 
 
 
