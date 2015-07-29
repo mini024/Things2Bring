@@ -16,7 +16,10 @@ class Guest: PFObject, PFSubclassing {
     @NSManaged var userId:PFUser?
     @NSManaged var event: Event?
     @NSManaged var rsvp: Int
+    @NSManaged var item: String
+    @NSManaged var rsvp: Int
 
+    
     // 3
     static func parseClassName() -> String {
         return "Guest"

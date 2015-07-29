@@ -27,7 +27,6 @@ class IconsCollectionViewController: UIViewController {
         query.findObjectsInBackgroundWithBlock{(result: [AnyObject]?, error: NSError?) -> Void in
             self.icons = result as? [Icons] ?? []
             self.collectionView?.reloadData()
-            print(self.icons)
         }
         
         self.collectionView.delegate = self
@@ -53,7 +52,9 @@ class IconsCollectionViewController: UIViewController {
             if edit && uploaded{
                 let destinationcontroller = segue.destinationViewController as! CreateEditEventViewController
                 destinationcontroller.event = self.event
-                destinationcontroller.eventImage.image = selectedimage
+                var imageData = UIImageJPEGRepresentation(self.selectedimage, 0.8)
+                destinationcontroller.event!.Icon = PFFile(data: imageData)
+            
             }else if edit{
                 let destinationcontroller = segue.destinationViewController as! CreateEditEventViewController
                 destinationcontroller.event = self.event
@@ -65,10 +66,12 @@ class IconsCollectionViewController: UIViewController {
                         }
                     }
                 }
+            
             } else if uploaded{
                let destinationcontroller = segue.destinationViewController as! CreateEditEventViewController
                 destinationcontroller.eventImage.image = selectedimage
-                
+//                var imageData = UIImageJPEGRepresentation(self.selectedimage, 0.8)
+//                destinationcontroller.event!.Icon = PFFile(data: imageData)
             } else {
                 let destinationcontroller = segue.destinationViewController as! CreateEditEventViewController
                 self.icons[self.selected!].objectForKey("Icon")!.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
@@ -130,7 +133,6 @@ extension IconsCollectionViewController: UICollectionViewDelegate, UICollectionV
             var xpos = (view.frame.width/3)*CGFloat(indexPath.row)
             var ypos = cell.frame.origin.y
             var line = indexPath.row/3
-            print(indexPath.row)
             
             if Double(indexPath.row/3)>=1.0{
                 ypos = (view.frame.width/3)*CGFloat(line)
@@ -158,7 +160,9 @@ extension IconsCollectionViewController: UIImagePickerControllerDelegate, UINavi
             let selectedImage : UIImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
             uploaded = true
             selectedimage = selectedImage
+            self.dismissViewControllerAnimated(true, completion: nil)
             performSegueWithIdentifier("ChooseIcon", sender: self)
+
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {

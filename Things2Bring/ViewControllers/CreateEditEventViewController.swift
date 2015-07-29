@@ -61,7 +61,7 @@ class CreateEditEventViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         if let event = event{
-            //displayEvent(event) //No se necesita porque se usa el back button
+            //displayEvent(event)
             navBarTitle.title = "Edit Event"
             edit = true
         } else {
@@ -125,6 +125,10 @@ class CreateEditEventViewController: UIViewController {
             let InviteViewController = segue.destinationViewController as! InviteFriendsViewController
             InviteViewController.event = event
         }
+    }
+    
+    @IBAction func unwindToSegue(segue: UIStoryboardSegue) {
+        println("Exiting...")
     }
     
     @IBAction func Things2Bring(sender: AnyObject) {
@@ -226,6 +230,7 @@ extension CreateEditEventViewController: UITextFieldDelegate{
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
+        descriptionTextview.resignFirstResponder()
         unlockAddList()
         return true;
     }
@@ -274,6 +279,7 @@ extension CreateEditEventViewController: UITextViewDelegate{
     
     func textViewDidEndEditing(textView: UITextView) {
         self.view.bounds.origin.y = 0
+        self.resignFirstResponder()
         if textView.text.isEmpty {
             textView.text = "Description"
             textView.textColor = UIColor.lightGrayColor()

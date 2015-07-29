@@ -136,4 +136,25 @@ class ParseHelper{
         }
         return users
     }
+    
+    //MARK: Adding what you are bringing
+//    static func additem(event: Event){
+//        var guestquery = Guest.query()
+//        guestquery?.whereKey("userId", equalTo: PFUser.currentUser()!)
+//        guestquery?.findObjectsInBackgroundWithBlock{(result: [AnyObject]?, error: NSError?) -> Void in
+//            let guests = result as? [Guest] ?? []
+//            if guests.count != 0{
+//                for index in 0...guests.count - 1 {
+//                    var eventt = guests[index].event
+//                    if eventt == event{
+//                        self.UpdateThings(guests[index].objectId!, theguest: guest)
+//                    } else {
+//                        guest.saveInBackground()
+//                    }
+//                }
+//            } else {
+//                guest.saveInBackground()
+//            }
+//        }
+//    }
 }

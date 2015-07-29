@@ -156,8 +156,8 @@
 				2222A99C1B544DA5007219AE /* libsqlite3.dylib in Frameworks */,
 				22CD5A721B56E1E700F57439 /* ParseUI.framework in Frameworks */,
 				2222A9971B544D75007219AE /* CoreGraphics.framework in Frameworks */,
-				2222A9981B544D75007219AE /* CoreLocation.framework in Frameworks */,
 				221031541B5F075A0094BDED /* Parse.framework in Frameworks */,
+				2222A9981B544D75007219AE /* CoreLocation.framework in Frameworks */,
 				2222A9991B544D75007219AE /* MobileCoreServices.framework in Frameworks */,
 				22CD5A6D1B56E1E700F57439 /* Bolts.framework in Frameworks */,
 				2222A99A1B544D75007219AE /* QuartzCore.framework in Frameworks */,
@@ -626,6 +626,8 @@
 					"$(PROJECT_DIR)/Things2Bring",
 					"$(PROJECT_DIR)/Things2Bring/Parse",
 					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
 				);
 				INFOPLIST_FILE = Things2Bring/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -680,6 +682,8 @@
 					"$(PROJECT_DIR)/Things2Bring/Parse",
 					Libary,
 					"$(PROJECT_DIR)/Things2Bring",
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
 					"$(PROJECT_DIR)/Things2Bring/Parse",
 					Libary,
 				);
