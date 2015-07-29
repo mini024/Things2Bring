@@ -36,13 +36,6 @@ class ItemsTableViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.items = result as? [Items] ?? []
                 println(self.items)
                 self.tableView.reloadData()
-                if self.items.count == 0 {
-                    if PFUser.currentUser() != self.event!.objectForKey("User") as? PFUser{
-                        self.addbutton.enabled = false
-                        self.addbutton.title = " "
-                        self.addbutton.image = nil
-                    }
-                }
             }
              view2.hidden = true
         } else {
@@ -50,9 +43,16 @@ class ItemsTableViewController: UIViewController, UITableViewDelegate, UITableVi
             edit = true
             view2.hidden = false
         }
-        
+        checkingifhost()
         itemNameTextField.delegate = self
         
+    }
+    
+    func checkingifhost(){
+        if PFUser.currentUser() != event?.objectForKey("User") as? PFUser{
+            addbutton.title = ""
+            addbutton.enabled = false
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

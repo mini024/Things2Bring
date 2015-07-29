@@ -8,7 +8,10 @@
 
 import UIKit
 import Parse
+//import ParseCrashReporting
 import Bolts
+import Realm
+import RealmSwift
 
 @UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,6 +21,9 @@ import Bolts
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         //MARK: Parse
+        
+        // Enable Crash Reporting
+        //ParseCrashReporting.enable();
        
         Parse.enableLocalDatastore()
         
@@ -72,8 +78,12 @@ import Bolts
             } else {
                 var rootViewController = self.window!.rootViewController as! LoginViewController
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                var initialViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Login") as! LoginViewController
+                initialViewController.invitationlink = true
+                initialViewController.eventId = dropFirst(url.path!)
                 rootViewController.invitationlink = true
                 rootViewController.eventId = dropFirst(url.path!)
+                
                 return true
             }
         }else{

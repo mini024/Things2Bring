@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2204C01B1B66AB2D00B17C56 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2204C0191B66AB2D00B17C56 /* Realm.framework */; };
+		2204C01C1B66AB2D00B17C56 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2204C01A1B66AB2D00B17C56 /* RealmSwift.framework */; };
+		2204C0201B66C30000B17C56 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2204C0191B66AB2D00B17C56 /* Realm.framework */; };
+		2204C0211B66C30000B17C56 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2204C0191B66AB2D00B17C56 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2204C0221B66C30000B17C56 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2204C01A1B66AB2D00B17C56 /* RealmSwift.framework */; };
+		2204C0231B66C30000B17C56 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2204C01A1B66AB2D00B17C56 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2208B06A1B5DBB6E00D55605 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2208B0681B5DBB6E00D55605 /* Main.storyboard */; };
 		221031541B5F075A0094BDED /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CD5A681B56E1E700F57439 /* Parse.framework */; };
 		2216CAE51B56FF26001CB6E7 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2216CAE41B56FF26001CB6E7 /* Guest.swift */; };
@@ -30,6 +36,7 @@
 		225262B51B54298C00FB9C4D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 225262B41B54298C00FB9C4D /* Images.xcassets */; };
 		225262B81B54298C00FB9C4D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 225262B61B54298C00FB9C4D /* LaunchScreen.xib */; };
 		225262C41B54298D00FB9C4D /* Things2BringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225262C31B54298D00FB9C4D /* Things2BringTests.swift */; };
+		227250ED1B62A25B007105B9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227250EC1B62A25B007105B9 /* SignUpViewController.swift */; };
 		22B8EF631B5F290B00C0E153 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B8EF621B5F290B00C0E153 /* ParseHelper.swift */; };
 		22C35C831B5811BA00F91ECC /* CreateEditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C35C821B5811BA00F91ECC /* CreateEditEventViewController.swift */; };
 		22C35C8C1B587F5600F91ECC /* PopDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C35C891B587F5600F91ECC /* PopDatePicker.swift */; };
@@ -51,6 +58,7 @@
 		22CD5A701B56E1E700F57439 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CD5A6A1B56E1E700F57439 /* ParseFacebookUtils.framework */; };
 		22CD5A711B56E1E700F57439 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CD5A6B1B56E1E700F57439 /* ParseFacebookUtilsV4.framework */; };
 		22CD5A721B56E1E700F57439 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CD5A6C1B56E1E700F57439 /* ParseUI.framework */; };
+		22D166561B680F550020DBCC /* FriendsGoingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D166551B680F550020DBCC /* FriendsGoingTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +71,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2204C0241B66C30100B17C56 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2204C0231B66C30000B17C56 /* RealmSwift.framework in Embed Frameworks */,
+				2204C0211B66C30000B17C56 /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		2204C0191B66AB2D00B17C56 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		2204C01A1B66AB2D00B17C56 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		2208B0691B5DBB6E00D55605 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Things2Bring/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2216CAE41B56FF26001CB6E7 /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		2216CAE61B56FF64001CB6E7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -90,6 +115,7 @@
 		225262BD1B54298C00FB9C4D /* Things2BringTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Things2BringTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		225262C21B54298D00FB9C4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		225262C31B54298D00FB9C4D /* Things2BringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Things2BringTests.swift; sourceTree = "<group>"; };
+		227250EC1B62A25B007105B9 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		22B8EF621B5F290B00C0E153 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		22C35C821B5811BA00F91ECC /* CreateEditEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEditEventViewController.swift; sourceTree = "<group>"; };
 		22C35C891B587F5600F91ECC /* PopDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDatePicker.swift; sourceTree = "<group>"; };
@@ -112,6 +138,7 @@
 		22CD5A6A1B56E1E700F57439 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		22CD5A6B1B56E1E700F57439 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		22CD5A6C1B56E1E700F57439 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		22D166551B680F550020DBCC /* FriendsGoingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsGoingTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,20 +148,24 @@
 			files = (
 				22CD5A701B56E1E700F57439 /* ParseFacebookUtils.framework in Frameworks */,
 				2222A9A41B544DD8007219AE /* libz.dylib in Frameworks */,
+				2204C01C1B66AB2D00B17C56 /* RealmSwift.framework in Frameworks */,
 				2222A9A21B544DCE007219AE /* SystemConfiguration.framework in Frameworks */,
 				2222A9A01B544DC3007219AE /* StoreKit.framework in Frameworks */,
+				2204C0221B66C30000B17C56 /* RealmSwift.framework in Frameworks */,
 				2222A99E1B544DBA007219AE /* Security.framework in Frameworks */,
 				2222A99C1B544DA5007219AE /* libsqlite3.dylib in Frameworks */,
 				22CD5A721B56E1E700F57439 /* ParseUI.framework in Frameworks */,
 				2222A9971B544D75007219AE /* CoreGraphics.framework in Frameworks */,
 				2222A9981B544D75007219AE /* CoreLocation.framework in Frameworks */,
-				2222A9991B544D75007219AE /* MobileCoreServices.framework in Frameworks */,
 				221031541B5F075A0094BDED /* Parse.framework in Frameworks */,
+				2222A9991B544D75007219AE /* MobileCoreServices.framework in Frameworks */,
 				22CD5A6D1B56E1E700F57439 /* Bolts.framework in Frameworks */,
 				2222A99A1B544D75007219AE /* QuartzCore.framework in Frameworks */,
 				2222A9921B544D48007219AE /* AudioToolbox.framework in Frameworks */,
 				22CD5A6F1B56E1E700F57439 /* ParseCrashReporting.framework in Frameworks */,
+				2204C01B1B66AB2D00B17C56 /* Realm.framework in Frameworks */,
 				22CD5A711B56E1E700F57439 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				2204C0201B66C30000B17C56 /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +253,8 @@
 				2208B0681B5DBB6E00D55605 /* Main.storyboard */,
 				225262B41B54298C00FB9C4D /* Images.xcassets */,
 				225262B61B54298C00FB9C4D /* LaunchScreen.xib */,
+				2204C0191B66AB2D00B17C56 /* Realm.framework */,
+				2204C01A1B66AB2D00B17C56 /* RealmSwift.framework */,
 				22CD5A661B56E1E700F57439 /* Parse Libary */,
 				2222A9A51B544DEB007219AE /* Frameworks */,
 				225262AB1B54298C00FB9C4D /* Supporting Files */,
@@ -264,6 +297,8 @@
 				22C35C9B1B598B7C00F91ECC /* ItemsTableViewController.swift */,
 				2241E1221B60353700856661 /* InviteFriendsViewController.swift */,
 				2241E1241B6056E500856661 /* LoginViewController.swift */,
+				227250EC1B62A25B007105B9 /* SignUpViewController.swift */,
+				22D166551B680F550020DBCC /* FriendsGoingTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -302,6 +337,7 @@
 				225262A41B54298C00FB9C4D /* Sources */,
 				225262A51B54298C00FB9C4D /* Frameworks */,
 				225262A61B54298C00FB9C4D /* Resources */,
+				2204C0241B66C30100B17C56 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -412,6 +448,8 @@
 				22C35CA21B59994A00F91ECC /* AddItemsTableViewCell.swift in Sources */,
 				22C35C8C1B587F5600F91ECC /* PopDatePicker.swift in Sources */,
 				2216CAE71B56FF64001CB6E7 /* User.swift in Sources */,
+				22D166561B680F550020DBCC /* FriendsGoingTableViewController.swift in Sources */,
+				227250ED1B62A25B007105B9 /* SignUpViewController.swift in Sources */,
 				22C35CA01B598D4E00F91ECC /* Item.swift in Sources */,
 				2222A9B01B546AB3007219AE /* Event.swift in Sources */,
 				2216CAE51B56FF26001CB6E7 /* Guest.swift in Sources */,
@@ -581,6 +619,13 @@
 					Libary,
 					"$(PROJECT_DIR)/Things2Bring/Parse",
 					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring",
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
 				);
 				INFOPLIST_FILE = Things2Bring/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -628,6 +673,13 @@
 					Libary,
 					"$(PROJECT_DIR)/Things2Bring/Parse",
 					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
+					"$(PROJECT_DIR)/Things2Bring",
 					"$(PROJECT_DIR)/Things2Bring/Parse",
 					Libary,
 				);

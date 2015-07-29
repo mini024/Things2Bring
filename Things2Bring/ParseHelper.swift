@@ -22,7 +22,7 @@ class ParseHelper{
     static func loadGuestEvents(completionBlock: PFArrayResultBlock){
         var queryEventsGuest = Guest.query()
         queryEventsGuest!.whereKey("userId", equalTo: PFUser.currentUser()!)
-        queryEventsGuest!.includeKey("Event")
+        queryEventsGuest!.includeKey("event")
         queryEventsGuest!.findObjectsInBackgroundWithBlock(completionBlock)
     }
     
@@ -66,5 +66,74 @@ class ParseHelper{
         
         event.deleteInBackground()
 
+    }
+    
+    //MARK: Parse Loading Guests
+    static func LoadingGuests(event: Event){
+        var guestquery = Guest.query()
+        guestquery?.whereKey("Event", equalTo: event.objectId!)
+        guestquery?.findObjectsInBackgroundWithBlock{(result: [AnyObject]?, error: NSError?) -> Void in
+            let guests = result as? [Guest] ?? []
+            
+        }
+    }
+    
+    //MARK: Parse Checking if guest exists
+    static func RSVP(event: Event, guest: Guest){
+        var guestquery = Guest.query()
+        guestquery?.whereKey("userId", equalTo: PFUser.currentUser()!)
+        guestquery?.findObjectsInBackgroundWithBlock{(result: [AnyObject]?, error: NSError?) -> Void in
+            let guests = result as? [Guest] ?? []
+            if guests.count != 0{
+            for index in 0...guests.count - 1 {
+                var eventt = guests[index].event
+                if eventt == event{
+                    self.UpdateGuest(guests[index].objectId!, theguest: guest)
+                } else {
+                   guest.saveInBackground()
+                }
+            }
+            } else {
+                guest.saveInBackground()
+            }
+        }
+    }
+    
+    //MARK: Update guest 
+    static func UpdateGuest(guestId: String, theguest: Guest){
+        println(theguest)
+        var user = PFUser.currentUser()
+        var query = Guest.query()
+        query!.getObjectInBackgroundWithId(guestId) {
+            (guest: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                println(error)
+            } else{
+                println("saved")
+                guest?.setObject(theguest.rsvp, forKey: "rsvp")
+                guest!.saveInBackground()
+            }
+        }
+    }
+    
+    //MARK: Getting Friends Going
+    static func friendsgoing(event: Event, rsvp: Int) -> [PFUser]{
+        var users:[PFUser] = []
+        var guestquery = Guest.query()
+        guestquery?.whereKey("event", equalTo: event)
+        guestquery?.includeKey("userId")
+        guestquery?.findObjectsInBackgroundWithBlock{(result: [AnyObject]?, error: NSError?) -> Void in
+            let guests = result as? [Guest] ?? []
+            println("Friends going")
+            if guests.count != 0{
+                for index in 0...guests.count - 1 {
+                    var eventt = guests[index].event
+                    if guests[index].rsvp == rsvp{
+                        users.append(guests[index].userId!)
+                    }
+                }
+            }
+        }
+        return users
     }
 }

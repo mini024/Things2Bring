@@ -8,6 +8,8 @@
 
 import UIKit
 import Parse
+import Realm
+import RealmSwift
 
 class EventViewController: UIViewController {
     
@@ -42,7 +44,8 @@ class EventViewController: UIViewController {
     }
     
     func checkingifhost(){
-        if PFUser.currentUser() == self.event!.objectForKey("User") as? PFUser{
+        if PFUser.currentUser() == event?.objectForKey("User") as? PFUser{
+            host = true
             rsvpSegmentControl.hidden = true
             displayEvent(self.event!)
         } else {
@@ -51,13 +54,40 @@ class EventViewController: UIViewController {
             EditSaveButton.title = " "
             displayEvent(self.event!)
         }
+        
     }
     
+    @IBAction func RSVPsegment(sender: AnyObject) {
+        if rsvpSegmentControl.selectedSegmentIndex == 0{
+            var guest = Guest()
+            guest.userId = PFUser.currentUser()
+            guest.event = event
+            guest.rsvp = 0
+            ParseHelper.RSVP(event!, guest: guest)
+        } else if  rsvpSegmentControl.selectedSegmentIndex == 1 {
+            var guest = Guest()
+            guest.userId = PFUser.currentUser()
+            guest.event = event
+            guest.rsvp = 1
+            ParseHelper.RSVP(event!, guest: guest)
+        } else {
+            var guest = Guest()
+            guest.userId = PFUser.currentUser()
+            guest.event = event
+            guest.rsvp = 2
+            ParseHelper.RSVP(event!, guest: guest)
+        }
+        
+    }
     func displayEvent(event: Event){
         if let event = self.event, datelabel = dateLabel, descriptionTextField = descriptionTextField{
             self.descriptionTextField.text = event.eventDescription
             self.dateLabel.text = "Date: " + EventTableViewCell.dateFormatter.stringFromDate(event.Date!)
             self.addressLabel.text = "Address: " + event.Address!
+            //Get it from realm
+            if !openbylink && !host{
+            self.rsvpSegmentControl.selectedSegmentIndex = event.rsvp!
+            }
             event.Icon!.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
                 if error == nil {
                     if let data = imageData {
@@ -78,10 +108,7 @@ class EventViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         if let event = event {
-            if PFUser.currentUser() != self.event!.objectForKey("User") as? PFUser{
-                rsvpSegmentControl.hidden = true
-                displayEvent(self.event!)
-            }
+            checkingifhost()
         } else  if openbylink {
             println(eventId)
             ParseHelper.loadEvent(eventId){ (result: [AnyObject]?, error: NSError?) -> Void in
@@ -97,11 +124,14 @@ class EventViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "EditEvent"{
             let CreateEventViewController = segue.destinationViewController as! CreateEditEventViewController
-            CreateEventViewController.event = event
+            CreateEventViewController.event = event!
             CreateEventViewController.host = host
         } else if segue.identifier == "Things"{
             let destinationviewcontroller = segue.destinationViewController as! ItemsTableViewController
             destinationviewcontroller.exists = true
+            destinationviewcontroller.event = self.event
+        } else if segue.identifier == "FriendsGoing" {
+            let destinationviewcontroller = segue.destinationViewController as! FriendsGoingTableViewController
             destinationviewcontroller.event = self.event
         }
     }

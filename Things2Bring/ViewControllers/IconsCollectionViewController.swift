@@ -15,6 +15,7 @@ class IconsCollectionViewController: UIViewController {
     var event = Event()
     var selected: Int?
     var edit = false
+    var uploaded = false
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -39,27 +40,36 @@ class IconsCollectionViewController: UIViewController {
     }
     
     func UploadImage(sender: UIButton!){
+        var picker = UIImagePickerController();
+        picker.delegate = self;
+        picker.allowsEditing = true;
+        picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
         
+        self.presentViewController(picker, animated: true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ChooseIcon"{
-            if edit{
+            if edit && uploaded{
                 let destinationcontroller = segue.destinationViewController as! CreateEditEventViewController
-                    //MARK: CHANGE HERE!
-//                        var newevent = Event()
-//                        newevent.equal(self.event)
-//                        newevent.Title = self.event.Title
-//                        newevent.Icon = self.icons[self.selected!].objectForKey("Icon")! as? PFFile
-//                        newevent.Description = self.event.Description
-//                        newevent.Date = self.event.Date
-//                        newevent.User = PFUser.currentUser()
-//                        newevent.Address = self.event.Address
-                        //destinationcontroller.eventImage.image = image
-                        destinationcontroller.event! = self.event
-            
+                destinationcontroller.event = self.event
+                destinationcontroller.eventImage.image = selectedimage
+            }else if edit{
+                let destinationcontroller = segue.destinationViewController as! CreateEditEventViewController
+                destinationcontroller.event = self.event
+                self.icons[self.selected!].objectForKey("Icon")!.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
+                    if error == nil {
+                        if let data = imageData {
+                            let image = UIImage(data: imageData!)
+                            destinationcontroller.eventImage.image = image
+                        }
+                    }
+                }
+            } else if uploaded{
+               let destinationcontroller = segue.destinationViewController as! CreateEditEventViewController
+                destinationcontroller.eventImage.image = selectedimage
                 
-            } else{
+            } else {
                 let destinationcontroller = segue.destinationViewController as! CreateEditEventViewController
                 self.icons[self.selected!].objectForKey("Icon")!.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
                     if error == nil {
@@ -140,4 +150,18 @@ extension IconsCollectionViewController: UICollectionViewDelegate, UICollectionV
         performSegueWithIdentifier("ChooseIcon", sender: self)
     }
 
+}
+
+extension IconsCollectionViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIScrollViewDelegate {
+    func imagePickerController(picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){
+            let selectedImage : UIImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
+            uploaded = true
+            selectedimage = selectedImage
+            performSegueWithIdentifier("ChooseIcon", sender: self)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

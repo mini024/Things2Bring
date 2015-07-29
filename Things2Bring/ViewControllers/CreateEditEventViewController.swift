@@ -50,8 +50,11 @@ class CreateEditEventViewController: UIViewController {
         //MARK: TextField Delegates
         dateTextField.delegate = self
         titleTextField.delegate = self
+        descriptionTextview.delegate = self
         AddressTextField.delegate = self
         
+        
+        descriptionTextview.textColor = UIColor.lightGrayColor()
         //MARK: Pop over
         popDatePicker = PopDatePicker(forTextField: dateTextField)
     }
@@ -186,7 +189,7 @@ class CreateEditEventViewController: UIViewController {
                 self.performSegueWithIdentifier("SaveEditedEvent", sender: self)
             }
         }
-    }
+        }
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -256,6 +259,24 @@ extension CreateEditEventViewController: UITextFieldDelegate{
         else {
             unlockAddList()
             return true
+        }
+    }
+}
+
+extension CreateEditEventViewController: UITextViewDelegate{
+    func textViewDidBeginEditing(textView: UITextView) {
+        self.view.bounds.origin.y = 100
+        if textView.textColor == UIColor.lightGrayColor() {
+            textView.text = nil
+            textView.textColor = UIColor.blackColor()
+        }
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        self.view.bounds.origin.y = 0
+        if textView.text.isEmpty {
+            textView.text = "Description"
+            textView.textColor = UIColor.lightGrayColor()
         }
     }
 }

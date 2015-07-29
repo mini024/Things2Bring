@@ -9,6 +9,8 @@
 import UIKit
 import Parse
 import Bolts
+import Realm
+import RealmSwift
 
 class Event: PFObject, PFSubclassing {
     @NSManaged var Title: String
@@ -17,6 +19,7 @@ class Event: PFObject, PFSubclassing {
     @NSManaged var eventDescription: String
     @NSManaged var Address: String?
     @NSManaged var User: PFUser?
+    var rsvp:Int?
     
     // 3
     static func parseClassName() -> String {
@@ -55,6 +58,15 @@ class Event: PFObject, PFSubclassing {
         }
     }
 
+}
+
+class Events: Object {
+    dynamic var Title: String?
+    dynamic var Date: NSDate?
+    //dynamic var Icon: PFFile?
+    dynamic var eventDescription: String?
+    dynamic var Address: String?
+    //dynamic var User: PFUser?
 }
 
 

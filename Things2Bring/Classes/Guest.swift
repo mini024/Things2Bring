@@ -9,10 +9,13 @@
 import UIKit
 import Parse
 import Bolts
+import Realm
+import RealmSwift
 
 class Guest: PFObject, PFSubclassing {
     @NSManaged var userId:PFUser?
-    //@NSManaged var Event: Event
+    @NSManaged var event: Event?
+    @NSManaged var rsvp: Int
 
     // 3
     static func parseClassName() -> String {
@@ -35,4 +38,11 @@ class Guest: PFObject, PFSubclassing {
         }
     }
    
+}
+
+
+class Guests: Object{
+    //dynamic var userId:PFUser?
+    dynamic var eventid:String?
+    dynamic var rsvp: Int = 3
 }

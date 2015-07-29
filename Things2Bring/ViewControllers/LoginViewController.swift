@@ -8,6 +8,8 @@
 
 import UIKit
 import Parse
+import Realm
+import RealmSwift
 
 class LoginViewController: UIViewController {
 
@@ -20,6 +22,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Do any additional setup after loading the view.
     }
 
@@ -50,6 +53,10 @@ class LoginViewController: UIViewController {
             var EventController = navcontroller.topViewController as! EventViewController
             EventController.openbylink = true
             EventController.eventId = eventId!
+        } else if segue.identifier == "SignUp"{
+            var SignUpController = segue.destinationViewController as! SignUpViewController
+            SignUpController.invitationLink = invitationlink
+            SignUpController.eventId = eventId
         }
     }
     

@@ -8,6 +8,8 @@
 
 import UIKit
 import Parse
+import Realm
+import RealmSwift
 
 class Icons: PFObject, PFSubclassing {
     @NSManaged var icon:PFFile?

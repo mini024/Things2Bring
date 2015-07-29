@@ -8,6 +8,8 @@
 
 import UIKit
 import Parse
+import Realm
+import RealmSwift
 
 class Items: PFObject, PFSubclassing {
     @NSManaged var name:String?

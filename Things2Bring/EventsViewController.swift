@@ -8,6 +8,9 @@
 
 import UIKit
 import Parse
+import Realm
+import RealmSwift
+
 
 class EventsViewController: UIViewController {
     
@@ -24,10 +27,11 @@ class EventsViewController: UIViewController {
     var section1Guest:[Event] = []
     var section2Guest:[Event] = []
     var section3Guest:[Event] = []
-    var guest:[Guest] = []
+    var guest:[Guest]?
     var segmentHost = true
     var load = false
     var selectedEvent = Event()
+    let realm = Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,16 +63,19 @@ class EventsViewController: UIViewController {
         ParseHelper.loadEvents{(result: [AnyObject]?, error: NSError?) -> Void in
             self.events = result as? [Event] ?? []
             self.tableView.reloadData()
-            }
+        }
 
         //MARK: Parse Helper Get Guest Events
        ParseHelper.loadGuestEvents{(result: [AnyObject]?, error: NSError?) -> Void in
             self.guest = result as? [Guest] ?? []
-            println(self.guest[0].objectForKey("Event"))
-                for index in 0...self.guest.count - 1 {
-                    var event = self.guest[index].objectForKey("Event") as! Event
+            if self.guest!.count != 0 {
+                for index in 0...self.guest!.count - 1 {
+                    var event = self.guest![index].event! as Event
+                    event.rsvp = self.guest![index].rsvp
                     self.eventsGuest.append(event)
                 }
+                
+            }
         }
     }
 
@@ -97,8 +104,8 @@ class EventsViewController: UIViewController {
             } else{
                 EventDetailViewController.host = true
             }
-        } else if segue.identifier == "CreateEvent"{
-            
+        } else if segue.identifier == "Logout"{
+            PFUser.logOutInBackground()
         }
     }
 
@@ -149,15 +156,16 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
             println("Guest Events")
             println(eventsGuest)
         }
+        //println(events)
         var sectionEvent = 0
 
         for var i = 0; i<numberofEvents; i += 1 {
             //MARK: Getting current Date
             var eventdate = NSDate()
             if !segmentHost{
-                eventdate = (eventsGuest[i].objectForKey("Date") as? NSDate)!
+                eventdate = (eventsGuest[i].Date! as NSDate)
             } else {
-                eventdate = (events[i].objectForKey("Date") as? NSDate)!
+                eventdate = (events[i].Date! as NSDate)
             }
             
             var date = NSDate()
@@ -250,34 +258,30 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var section = indexPath.section
         var row = indexPath.row
-
-        var TextItem: Event = events[row] as Event
-
+        
         if segmentHost{
             switch (section) {
                 case 0:
-                    TextItem = sectionHost[row] as Event
+                    selectedEvent = sectionHost[row] as Event
                 case 1:
-                    TextItem = section1Host[row] as Event
+                    selectedEvent = section1Host[row] as Event
                 case 2:
-                    TextItem = section2Host[row] as Event
+                    selectedEvent = section2Host[row] as Event
                 default:
-                    TextItem = section3Host[row]
+                    selectedEvent = section3Host[row]
             }
         } else{
             switch (section) {
             case 0:
-                TextItem = sectionGuest[row] as Event
+                selectedEvent = sectionGuest[row] as Event
             case 1:
-                TextItem = section1Guest[row] as Event
+                selectedEvent = section1Guest[row] as Event
             case 2:
-                TextItem = section2Guest[row] as Event
+                selectedEvent = section2Guest[row] as Event
             default:
-                TextItem = section3Guest[row] as Event
+                selectedEvent = section3Guest[row] as Event
             }
         }
-
-        selectedEvent = TextItem
         
         self.performSegueWithIdentifier("EventDetail", sender: self) 
     }

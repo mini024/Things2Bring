@@ -10,13 +10,19 @@ import UIKit
 import Parse
 import Bolts
 
-class User: PFUser, PFSubclassing  {
-    
+class User: PFUser{
+    @NSManaged var Name: String
+    //@NSManaged var username: String?
     // 4
     override init () {
         super.init()
         
         
     }
+    
+    override static func parseClassName() -> String {
+        return "_User"
+    }
+    
 
 }
