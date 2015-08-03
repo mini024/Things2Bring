@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		2204C01B1B66AB2D00B17C56 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2204C0191B66AB2D00B17C56 /* Realm.framework */; };
 		2204C01C1B66AB2D00B17C56 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2204C01A1B66AB2D00B17C56 /* RealmSwift.framework */; };
-		2204C0201B66C30000B17C56 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2204C0191B66AB2D00B17C56 /* Realm.framework */; };
-		2204C0211B66C30000B17C56 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2204C0191B66AB2D00B17C56 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2204C0221B66C30000B17C56 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2204C01A1B66AB2D00B17C56 /* RealmSwift.framework */; };
-		2204C0231B66C30000B17C56 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2204C01A1B66AB2D00B17C56 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2208B06A1B5DBB6E00D55605 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2208B0681B5DBB6E00D55605 /* Main.storyboard */; };
 		221031541B5F075A0094BDED /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CD5A681B56E1E700F57439 /* Parse.framework */; };
 		2216CAE51B56FF26001CB6E7 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2216CAE41B56FF26001CB6E7 /* Guest.swift */; };
@@ -80,8 +76,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2204C0231B66C30000B17C56 /* RealmSwift.framework in Embed Frameworks */,
-				2204C0211B66C30000B17C56 /* Realm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,8 +83,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2204C0191B66AB2D00B17C56 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
-		2204C01A1B66AB2D00B17C56 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		2204C0191B66AB2D00B17C56 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = /Users/jessycavazos95/Documents/Proyectos/MakeSchool/Things2Bring/Things2Bring/Realm.framework; sourceTree = "<absolute>"; };
+		2204C01A1B66AB2D00B17C56 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = /Users/jessycavazos95/Documents/Proyectos/MakeSchool/Things2Bring/Things2Bring/RealmSwift.framework; sourceTree = "<absolute>"; };
 		2208B0691B5DBB6E00D55605 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Things2Bring/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2216CAE41B56FF26001CB6E7 /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		2216CAE61B56FF64001CB6E7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -156,7 +150,6 @@
 				2204C01C1B66AB2D00B17C56 /* RealmSwift.framework in Frameworks */,
 				2222A9A21B544DCE007219AE /* SystemConfiguration.framework in Frameworks */,
 				2222A9A01B544DC3007219AE /* StoreKit.framework in Frameworks */,
-				2204C0221B66C30000B17C56 /* RealmSwift.framework in Frameworks */,
 				2222A99E1B544DBA007219AE /* Security.framework in Frameworks */,
 				2222A99C1B544DA5007219AE /* libsqlite3.dylib in Frameworks */,
 				22CD5A721B56E1E700F57439 /* ParseUI.framework in Frameworks */,
@@ -169,7 +162,6 @@
 				22CD5A6F1B56E1E700F57439 /* ParseCrashReporting.framework in Frameworks */,
 				2204C01B1B66AB2D00B17C56 /* Realm.framework in Frameworks */,
 				22CD5A711B56E1E700F57439 /* ParseFacebookUtilsV4.framework in Frameworks */,
-				2204C0201B66C30000B17C56 /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,8 +250,6 @@
 				2208B0681B5DBB6E00D55605 /* Main.storyboard */,
 				225262B41B54298C00FB9C4D /* Images.xcassets */,
 				225262B61B54298C00FB9C4D /* LaunchScreen.xib */,
-				2204C0191B66AB2D00B17C56 /* Realm.framework */,
-				2204C01A1B66AB2D00B17C56 /* RealmSwift.framework */,
 				22CD5A661B56E1E700F57439 /* Parse Libary */,
 				2222A9A51B544DEB007219AE /* Frameworks */,
 				225262AB1B54298C00FB9C4D /* Supporting Files */,

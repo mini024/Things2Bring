@@ -270,11 +270,23 @@ extension CreateEditEventViewController: UITextFieldDelegate{
 
 extension CreateEditEventViewController: UITextViewDelegate{
     func textViewDidBeginEditing(textView: UITextView) {
-        self.view.bounds.origin.y = 100
+        self.view.bounds.origin.y = textView.frame.height
         if textView.textColor == UIColor.lightGrayColor() {
             textView.text = nil
             textView.textColor = UIColor.blackColor()
         }
+        
+        var line = textView.caretRectForPosition(textView.selectedTextRange!.start)
+        var overflow = line.origin.y + line.size.height
+            - ( textView.contentOffset.y + textView.bounds.size.height
+                - textView.contentInset.bottom - textView.contentInset.top)
+        
+        if ( overflow > 0 ) {
+            var offset = textView.contentOffset
+            offset.y += overflow + 7
+            textView.setContentOffset(offset, animated: true)
+        }
+        
     }
     
     func textViewDidEndEditing(textView: UITextView) {

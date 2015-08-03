@@ -148,13 +148,14 @@ class ItemsTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func addTotal(sender: UIStepper!) {
+        totalLabel.textColor = UIColor.blackColor()
         totalLabel.text = "Total: " + "\(sender.value)"
         itemNameTextField.resignFirstResponder()
     }
     
     @IBAction func AddItem(sender: AnyObject) {
         //MARK: Pop Add Item
-        if itemNameTextField.text != " " && addItemStepper.value != 0{
+        if (itemNameTextField.text != "" || itemNameTextField.text != " ") && addItemStepper.value != 0{
             exists = true
             var item = Items()
             SetAddItem(item)
@@ -165,10 +166,17 @@ class ItemsTableViewController: UIViewController, UITableViewDelegate, UITableVi
             addbutton.title = "Done"
             view2.hidden = true
             tableView.reloadData()
-        } else if addItemStepper.value == 0{
+        }  else if (itemNameTextField.text == "" || itemNameTextField.text == " ") && addItemStepper.value == 0{
+            totalLabel.textColor = UIColor.redColor()
             totalLabel.text = "Total is 0?"
-        } else {
-            itemNameTextField.text = "Enter Name"
+            itemNameTextField.attributedPlaceholder =  NSAttributedString(string:"Enter item",
+                attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+        } else if itemNameTextField.text == "" || itemNameTextField.text == " "{
+            itemNameTextField.attributedPlaceholder =  NSAttributedString(string:"Enter item",
+                attributes:[NSForegroundColorAttributeName: UIColor.redColor()])
+        } else if addItemStepper.value == 0{
+            totalLabel.textColor = UIColor.redColor()
+            totalLabel.text = "Total is 0?"
         }
     }
 
@@ -287,6 +295,10 @@ extension ItemsTableViewController: UITableViewDataSource{
 
 //MARK: Text Fields Delegate
 extension ItemsTableViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(textField: UITextField) {
+        itemNameTextField.attributedPlaceholder =  NSAttributedString(string:"Item Name",
+            attributes:[NSForegroundColorAttributeName: UIColor.blackColor()])
+    }
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()

@@ -35,18 +35,15 @@ class FriendsGoingTableViewController: UITableViewController {
         guestquery?.includeKey("userId")
         guestquery?.findObjectsInBackgroundWithBlock{(result: [AnyObject]?, error: NSError?) -> Void in
             let guests = result as? [Guest] ?? []
-            
             if guests.count != 0{
                 println(guests)
                 for index in 0...guests.count - 1 {
                     var eventt = guests[index].event
                     if guests[index].rsvp == 0{
-                        println(guests[index].userId!.objectForKey("Name") as! String)
                         self.usersGoing.append(guests[index].userId!.objectForKey("Name") as! String)
                     } else if  guests[index].rsvp == 1{
                         self.usersMaybe.append(guests[index].userId!.objectForKey("Name") as! String)
                     } else{
-                        println(guests[index].userId!)
                         self.usersCant.append(guests[index].userId!.objectForKey("Name") as! String)
                     }
                 }
@@ -111,23 +108,22 @@ class FriendsGoingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Friend", forIndexPath: indexPath) as! UITableViewCell
         
         var section = indexPath.section
+        var row = indexPath.row
         
         switch section{
         case 0:
-            for index in 0...usersGoing.count - 1{
-                cell.textLabel!.text = usersGoing[index]
-            }
+            cell.textLabel!.text = usersGoing[row]
         case 1:
             for index in 0...usersMaybe.count - 1 {
-                cell.textLabel!.text = usersMaybe[index]
+                cell.textLabel!.text = usersMaybe[row]
             }
         case 2:
             for index in 0...usersCant.count - 1 {
-                cell.textLabel!.text = usersCant[index]
+                cell.textLabel!.text = usersCant[row]
             }
         default:
             for index in 0...usersGoing.count - 1{
-                cell.textLabel!.text = usersGoing[index]
+                cell.textLabel!.text = usersGoing[row]
             }
         }
         
