@@ -33,7 +33,10 @@ import RealmSwift
         
         //Registering Sublclasses
         Event.registerSubclass()
-        Things2Bring.Guest.registerSubclass()
+        Guest.registerSubclass()
+        Items.registerSubclass()
+        User.registerSubclass()
+        Icons.registerSubclass()
         
         //Login
         
@@ -44,8 +47,6 @@ import RealmSwift
             var initialViewController = storyboard.instantiateViewControllerWithIdentifier("NavController") as! UINavigationController
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
-        } else {
-            println("Hello")
         }
         
 //        PFUser.logInWithUsername("Test", password: "test")

@@ -69,10 +69,13 @@ class EventsViewController: UIViewController {
        ParseHelper.loadGuestEvents{(result: [AnyObject]?, error: NSError?) -> Void in
             self.guest = result as? [Guest] ?? []
             if self.guest!.count != 0 {
+                ParseHelper.guests = self.guest
                 for index in 0...self.guest!.count - 1 {
-                    var event = self.guest![index].event! as Event
-                    event.rsvp = self.guest![index].rsvp
-                    self.eventsGuest.append(event)
+                    if self.guest![index].userId != PFUser.currentUser(){
+                        var event = self.guest![index].event! as Event
+                        event.rsvp = self.guest![index].rsvp
+                        self.eventsGuest.append(event)
+                    }
                 }
                 
             }
@@ -129,20 +132,22 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func numberOfSectionsInTableView(tableView2: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(tableView2: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "Today"
+            return "Past Events"
         }
         else if section == 1 {
-            return "This Week"
+            return "Today"
         }
         else if section == 2 {
-            return "Next Week"
+            return "This Week"
         }
-        else {
+        else if section == 3{
+            return "Next Week"
+        } else {
             return "Next Month"
         }
     }
@@ -153,8 +158,6 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
         
         if !segmentHost{
             numberofEvents = self.eventsGuest.count
-            println("Guest Events")
-            println(eventsGuest)
         }
         //println(events)
         var sectionEvent = 0
@@ -180,20 +183,30 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource{
             let dayEvent = componentsEvent.day
             
             //Compare dates to get correct section
-            if (monthEvent == month && dayEvent == day){
-                sectionEvent = 0
-            } else if (monthEvent == month && dayEvent > day){
-                if (dayEvent - day) >= 7 && (dayEvent - day) < 14{
-                    sectionEvent = 2
-                } else {
+            if (monthEvent == month){
+                if dayEvent == day{
                     sectionEvent = 1
-                }
-            } else if ( monthEvent > month){
-                if monthEvent - month == 1{
-                sectionEvent = 3
+                } else if dayEvent > day{
+                    if (dayEvent - day) >= 7 && (dayEvent - day) < 14{
+                        sectionEvent = 3
+                    } else {
+                        sectionEvent = 2
+                    }
+                } else if (monthEvent == month && dayEvent < day){
+                    sectionEvent = 0
+                } else {
+                    sectionEvent = 0
                 }
             } else {
-                sectionEvent = 5
+                if monthEvent - month == 1 && day-30>=0{
+                    if (dayEvent - day) >= 7 && (dayEvent - day) < 14{
+                        sectionEvent = 3
+                    } else {
+                        sectionEvent = 2
+                    }
+                }else {
+                    sectionEvent = 5
+                }
             }
             
             if sectionEvent == section{

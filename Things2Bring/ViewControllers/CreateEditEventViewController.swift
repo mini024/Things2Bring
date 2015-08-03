@@ -75,7 +75,6 @@ class CreateEditEventViewController: UIViewController {
     @IBAction func InviteFriends(sender: AnyObject) {
         if !edit && !saved{
             SetEventValues(newevent)
-            println(newevent)
             newevent.saveInBackground()
             event = newevent
             saved = true
@@ -134,7 +133,6 @@ class CreateEditEventViewController: UIViewController {
     @IBAction func Things2Bring(sender: AnyObject) {
         if !edit && !saved{
             SetEventValues(newevent)
-            println(newevent)
             newevent.saveInBackground()
             event = newevent
             saved = true
@@ -180,19 +178,21 @@ class CreateEditEventViewController: UIViewController {
     @IBAction func SaveEvent(sender: AnyObject) {
         //MARK: Update event
         if let event = event {
-        var query = PFQuery(className:"Event")
-        query.getObjectInBackgroundWithId(event.objectId!) {
-            (event: PFObject?, error: NSError?) -> Void in
-            if error != nil {
-                println(error)
-            } else if let event = event {
-                //Check This
-                self.SetEventValues(event as! Event)
-                event.saveInBackground()
-                println(event.objectId)
-                self.performSegueWithIdentifier("SaveEditedEvent", sender: self)
+            var query = PFQuery(className:"Event")
+            query.getObjectInBackgroundWithId(event.objectId!) {
+                (event: PFObject?, error: NSError?) -> Void in
+                if error != nil {
+                    println(error)
+                } else if let event = event {
+                    //Check This
+                    self.SetEventValues(event as! Event)
+                    event.saveInBackground()
+                    self.performSegueWithIdentifier("SaveEditedEvent", sender: self)
+                }
             }
-        }
+        } else {
+            var alert = UIAlertView(title: "Information Missing", message: "Please follow all the steps", delegate: self, cancelButtonTitle: "Ok")
+            alert.show()
         }
     }
     

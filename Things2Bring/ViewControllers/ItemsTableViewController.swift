@@ -12,12 +12,15 @@ import Parse
 class ItemsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     var event: Event?
-    //var exists = false
     var items:[Items] = []
     var add = 0
     var edit = false //Editing list
     var exists = false // Editing Events List
     var objectId: String?
+    var taking:[Items] = []
+    var itemsinevent:[Items] = []
+    var selectedItem:Items?
+    var selectedItemrow:Int?
     
     @IBOutlet var addbutton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
@@ -29,13 +32,18 @@ class ItemsTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addItemStepper.maximumValue = 20
         //MARK: Get Items from Parse if Event exists
         if exists{
-            println(event?.objectId)
-            ParseHelper.loadItem(event!.objectId!){(result: [AnyObject]?, error: NSError?) -> Void in
+            ParseHelper.loadItem(event!){(result: [AnyObject]?, error: NSError?) -> Void in
                 self.items = result as? [Items] ?? []
-                println(self.items)
-                self.tableView.reloadData()
+                if error != nil{
+                    println(error)
+                } else {
+                    println(self.items)
+                    self.tableView.reloadData()
+                }
             }
              view2.hidden = true
         } else {
@@ -48,6 +56,35 @@ class ItemsTableViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        if exists{
+            ParseHelper.loadItem(event!){(result: [AnyObject]?, error: NSError?) -> Void in
+                self.items = result as? [Items] ?? []
+                if error != nil{
+                    println(error)
+                } else {
+                    println(self.items)
+                    self.tableView.reloadData()
+                }
+            }
+            view2.hidden = true
+        } else {
+            addbutton.title = "Done"
+            edit = true
+            view2.hidden = false
+        }
+        checkingifhost()
+        itemNameTextField.delegate = self
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        println(taking)
+        if taking.count != 0{
+            ParseHelper.Bringing(event!, taking: taking)
+            taking = []
+        }
+    }
+    
     func checkingifhost(){
         if PFUser.currentUser() != event?.objectForKey("User") as? PFUser{
             addbutton.title = ""
@@ -56,9 +93,11 @@ class ItemsTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "BackToEvent"{
-            let destinationviewcontroller = segue.destinationViewController as! CreateEditEventViewController
-            destinationviewcontroller.items = items
+        if segue.identifier == "ItemDetail"{
+            let destinationviewcontroller = segue.destinationViewController as! ItemDetailTableViewController
+            selectedItem = items[selectedItemrow!]
+            destinationviewcontroller.item = selectedItem
+            destinationviewcontroller.event = event
         }
     }
     
@@ -75,6 +114,18 @@ class ItemsTableViewController: UIViewController, UITableViewDelegate, UITableVi
             edit = false
             addbutton.title = "Edit"
             tableView.reloadData()
+//            if itemsinevent.count != 0 {
+//                var query = PFQuery(className:"Event")
+//                query.getObjectInBackgroundWithId(event!.objectId!) {
+//                    (itemm: PFObject?, error: NSError?) -> Void in
+//                    if error != nil {
+//                        println(error)
+//                    } else if let itemm = itemm {
+//                        itemm.items
+//                        itemm.saveInBackground()
+//                    }
+//                }
+//            }
         }
     }
     
@@ -83,16 +134,17 @@ class ItemsTableViewController: UIViewController, UITableViewDelegate, UITableVi
         view2.hidden = true
         itemNameTextField.text = " "
         addItemStepper.value = 0
+        itemNameTextField.resignFirstResponder()
     }
     
     func SetAddItem(item: Items){
         item["Item"] = itemNameTextField.text
         item["Total"] = addItemStepper.value
         item["Recolected"] = 0
-        item["userId"] = PFUser.currentUser()
-        item["EventId"] = event!.objectId!
+        item.event = event!
         items.append(item)
         item.saveInBackground()
+        itemsinevent.append(item)
     }
     
     @IBAction func addTotal(sender: UIStepper!) {
@@ -140,9 +192,9 @@ class ItemsTableViewController: UIViewController, UITableViewDelegate, UITableVi
         var total = item["Total"] as! Float
         var subtotal = sender.value
         cell.progressbar.progress = Float(sender.value)/total
-        cell.progressbar2.progress = Float(sender.value)/total
         cell.totlaLabel.text = "\(Int(subtotal))" + "/" + "\(Int(total))"
         item.recolected = Int(Float(sender.value))
+        taking.append(item)
         
         var query = PFQuery(className:"Items")
         query.getObjectInBackgroundWithId(item.objectId!) {
@@ -204,10 +256,16 @@ extension ItemsTableViewController: UITableViewDataSource{
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == items.count{
+        if indexPath.row == items.count - 1 && !edit{
+            selectedItemrow = indexPath.row
+            performSegueWithIdentifier("ItemDetail", sender: self)
+        } else if indexPath.row == items.count && edit{
             view2.hidden = false
             addbutton.enabled = false
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        } else {
+            selectedItemrow = indexPath.row
+            performSegueWithIdentifier("ItemDetail", sender: self)
         }
     }
     

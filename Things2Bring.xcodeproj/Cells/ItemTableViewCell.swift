@@ -13,7 +13,6 @@ class ItemTableViewCell: UITableViewCell {
     @IBOutlet weak var itemLabel: UILabel!
     @IBOutlet weak var totlaLabel: UILabel!
     @IBOutlet weak var progressbar: UIProgressView!
-    @IBOutlet weak var progressbar2: UIProgressView!
     @IBOutlet weak var stepper: UIStepper!
     
     var item: Items?{
@@ -23,7 +22,6 @@ class ItemTableViewCell: UITableViewCell {
             var total = item.objectForKey("Total") as! Float
             var subtotal = item.objectForKey("Recolected") as! Float
             progressbar.progress = subtotal/total
-            progressbar2.progress = subtotal/total
             totlaLabel.text = "\(Int(subtotal))" + "/" + "\(Int(total))"
             stepper.maximumValue = Double(total)
             stepper.minimumValue = Double(subtotal)

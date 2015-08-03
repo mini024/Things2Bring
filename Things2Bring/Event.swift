@@ -19,6 +19,8 @@ class Event: PFObject, PFSubclassing {
     @NSManaged var eventDescription: String
     @NSManaged var Address: String?
     @NSManaged var User: PFUser?
+    @NSManaged var items: [Items]
+    
     var rsvp:Int?
     
     // 3

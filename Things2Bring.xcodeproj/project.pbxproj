@@ -59,6 +59,8 @@
 		22CD5A711B56E1E700F57439 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CD5A6B1B56E1E700F57439 /* ParseFacebookUtilsV4.framework */; };
 		22CD5A721B56E1E700F57439 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CD5A6C1B56E1E700F57439 /* ParseUI.framework */; };
 		22D166561B680F550020DBCC /* FriendsGoingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D166551B680F550020DBCC /* FriendsGoingTableViewController.swift */; };
+		22DEAEEC1B696484004D088B /* ItemDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DEAEEB1B696484004D088B /* ItemDetailTableViewController.swift */; };
+		22DEAEEE1B69E1FA004D088B /* ItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DEAEED1B69E1FA004D088B /* ItemsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +141,8 @@
 		22CD5A6B1B56E1E700F57439 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		22CD5A6C1B56E1E700F57439 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		22D166551B680F550020DBCC /* FriendsGoingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsGoingTableViewController.swift; sourceTree = "<group>"; };
+		22DEAEEB1B696484004D088B /* ItemDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailTableViewController.swift; sourceTree = "<group>"; };
+		22DEAEED1B69E1FA004D088B /* ItemsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 			files = (
 				22CD5A701B56E1E700F57439 /* ParseFacebookUtils.framework in Frameworks */,
 				2222A9A41B544DD8007219AE /* libz.dylib in Frameworks */,
+				221031541B5F075A0094BDED /* Parse.framework in Frameworks */,
 				2204C01C1B66AB2D00B17C56 /* RealmSwift.framework in Frameworks */,
 				2222A9A21B544DCE007219AE /* SystemConfiguration.framework in Frameworks */,
 				2222A9A01B544DC3007219AE /* StoreKit.framework in Frameworks */,
@@ -156,7 +161,6 @@
 				2222A99C1B544DA5007219AE /* libsqlite3.dylib in Frameworks */,
 				22CD5A721B56E1E700F57439 /* ParseUI.framework in Frameworks */,
 				2222A9971B544D75007219AE /* CoreGraphics.framework in Frameworks */,
-				221031541B5F075A0094BDED /* Parse.framework in Frameworks */,
 				2222A9981B544D75007219AE /* CoreLocation.framework in Frameworks */,
 				2222A9991B544D75007219AE /* MobileCoreServices.framework in Frameworks */,
 				22CD5A6D1B56E1E700F57439 /* Bolts.framework in Frameworks */,
@@ -200,6 +204,7 @@
 				22C35C951B595FC700F91ECC /* UploadIconCollectionViewCell.swift */,
 				22C35C9D1B598B9C00F91ECC /* ItemTableViewCell.swift */,
 				22C35CA11B59994A00F91ECC /* AddItemsTableViewCell.swift */,
+				22DEAEED1B69E1FA004D088B /* ItemsTableViewCell.swift */,
 			);
 			name = Cells;
 			path = ../Things2Bring.xcodeproj/Cells;
@@ -299,6 +304,7 @@
 				2241E1241B6056E500856661 /* LoginViewController.swift */,
 				227250EC1B62A25B007105B9 /* SignUpViewController.swift */,
 				22D166551B680F550020DBCC /* FriendsGoingTableViewController.swift */,
+				22DEAEEB1B696484004D088B /* ItemDetailTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -433,6 +439,7 @@
 				2222A98D1B544AB5007219AE /* EventTableViewCell.swift in Sources */,
 				22C35C9C1B598B7C00F91ECC /* ItemsTableViewController.swift in Sources */,
 				22B8EF631B5F290B00C0E153 /* ParseHelper.swift in Sources */,
+				22DEAEEC1B696484004D088B /* ItemDetailTableViewController.swift in Sources */,
 				2241E1251B6056E500856661 /* LoginViewController.swift in Sources */,
 				22C35C901B58801000F91ECC /* DateUtils.swift in Sources */,
 				22C35C831B5811BA00F91ECC /* CreateEditEventViewController.swift in Sources */,
@@ -452,6 +459,7 @@
 				227250ED1B62A25B007105B9 /* SignUpViewController.swift in Sources */,
 				22C35CA01B598D4E00F91ECC /* Item.swift in Sources */,
 				2222A9B01B546AB3007219AE /* Event.swift in Sources */,
+				22DEAEEE1B69E1FA004D088B /* ItemsTableViewCell.swift in Sources */,
 				2216CAE51B56FF26001CB6E7 /* Guest.swift in Sources */,
 				22C35C981B5968F300F91ECC /* icon.swift in Sources */,
 				22CBD2D81B55B7F80051C8D0 /* EventViewController.swift in Sources */,
@@ -628,6 +636,8 @@
 					Libary,
 					"$(PROJECT_DIR)/Things2Bring/Parse",
 					Libary,
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
 				);
 				INFOPLIST_FILE = Things2Bring/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -682,6 +692,8 @@
 					"$(PROJECT_DIR)/Things2Bring/Parse",
 					Libary,
 					"$(PROJECT_DIR)/Things2Bring",
+					"$(PROJECT_DIR)/Things2Bring/Parse",
+					Libary,
 					"$(PROJECT_DIR)/Things2Bring/Parse",
 					Libary,
 					"$(PROJECT_DIR)/Things2Bring/Parse",
